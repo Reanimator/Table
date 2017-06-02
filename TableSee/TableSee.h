@@ -19,6 +19,42 @@ public:
 	table& operator = (table& vt);//оператор копирование
 	void resize(int newsized);//ресайз
 
+	void sorted()
+	{
+		int sortedCount = 1;
+		for (size_t i = 0; i < size; i++)
+		{
+			if (masskey[i] != K())
+			{
+				for (int z = 0; z < sortedCount; z++)
+				{
+					if (masskey[z] == K() || masskey[i] <= masskey[z])
+					{
+						K tmp = masskey[i];
+						V tmp1 = massval[i];
+						masskey[i] = masskey[z];
+						massval[i] = massval[z];
+						masskey[z] = tmp;
+						massval[z] = tmp1;
+						
+					}
+				}
+				sortedCount++;
+			}
+		}
+	}
+
+	void print()
+	{
+		for (size_t i = 0; i < size; i++)
+		{
+			if (masskey[i] != K())
+			{
+				std::cout << masskey[i] << "|" << massval[i]<<std::endl;
+			}
+		}
+	}
+
 };
 
 template<class K, class V>
